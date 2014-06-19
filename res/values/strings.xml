@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">DashClock FileStorage Extension</string>
+  <string name="action_settings">Settings</string>
+  <string name="extension_title">Local File Storage</string>
+  <string name="extension_description">Local File Storage description</string>
+</resources>
