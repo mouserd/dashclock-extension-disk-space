@@ -1,12 +1,13 @@
 package com.pixelus.dashclock.ext;
 
 import android.content.Context;
-import android.text.format.Formatter;
+
+import static android.text.format.Formatter.formatFileSize;
 
 public class FileStorageStats {
 
-  long totalBytes;
-  long freeBytes;
+  private long totalBytes;
+  private long freeBytes;
   private FileStorageStatsType fileStorageStatsType;
 
   public FileStorageStats(FileStorageStatsType fileStorageStatsType) {
@@ -58,9 +59,10 @@ public class FileStorageStats {
   }
 
   public String toString(Context context) {
-    return String.format("%s: %s of %s free (%s%%)", fileStorageStatsType.getDisplayName(),
-        Formatter.formatShortFileSize(context, getFreeBytes()),
-        Formatter.formatShortFileSize(context, getTotalBytes()),
-        calculatePercentageFree());
+
+    return String.format("%s %s%% (%s) of %s free", fileStorageStatsType.getDisplayName(),
+        calculatePercentageFree(),
+        formatFileSize(context, getFreeBytes()),
+        formatFileSize(context, getTotalBytes()));
   }
 }

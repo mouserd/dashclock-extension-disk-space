@@ -45,6 +45,7 @@ public class FileStorageExtension extends DashClockExtension {
       if (extFileStorageStats.getTotalBytes() != intFileStorageStats.getTotalBytes()) {
         totalBytes += extFileStorageStats.getTotalBytes();
         freeBytes += extFileStorageStats.getFreeBytes();
+
         Log.d(TAG, format("External Storage [total: %d, free: %d, free %%: %d]",
             extFileStorageStats.getTotalBytes(), extFileStorageStats.getFreeBytes(),
             extFileStorageStats.calculatePercentageFree()));
@@ -57,7 +58,7 @@ public class FileStorageExtension extends DashClockExtension {
     Log.d(TAG, format("Total Free: %d%%", totalPercentageFree));
 
     String bodyInternal = intFileStorageStats.toString(this);
-    String title = format("%s%% free space", totalPercentageFree);
+    String title = format("%s%% total free space", totalPercentageFree);
 
     publishUpdate(new ExtensionData()
             .visible(true)
