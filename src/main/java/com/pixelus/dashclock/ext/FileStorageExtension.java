@@ -14,7 +14,7 @@ import static java.lang.String.format;
 
 public class FileStorageExtension extends DashClockExtension {
 
-  public static final String TAG = "FileStorageExtension";
+  public static final String TAG = FileStorageExtension.class.getName();
 
   private String[] sdPaths = {
       "/storage/extSdCard/",
