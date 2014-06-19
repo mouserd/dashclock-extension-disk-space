@@ -14,6 +14,8 @@ import static java.lang.String.format;
 
 public class FileStorageExtension extends DashClockExtension {
 
+  public static final String TAG = "FileStorageExtension";
+
   private String[] sdPaths = {
       "/storage/extSdCard/",
       "/storage/sdcard1/",
@@ -28,12 +30,13 @@ public class FileStorageExtension extends DashClockExtension {
     long totalBytes = intFileStorageStats.getTotalBytes();
     long freeBytes = intFileStorageStats.getFreeBytes();
 
-    Log.d("FileStorageExtension", format("Internal Storage [total: %d, free: %d]",
-        intFileStorageStats.getTotalBytes(), intFileStorageStats.getFreeBytes()));
+    Log.d(TAG, format("Internal Storage [total: %d, free: %d, free %%: %d]",
+        intFileStorageStats.getTotalBytes(), intFileStorageStats.getFreeBytes(),
+        intFileStorageStats.calculatePercentageFree()));
 
     String bodyExternal = "";
-    File sdCardPath = getSDCardPath();
-    Log.d("FileStorageExtension", "SD Card Path: " + sdCardPath.getPath());
+    File sdCardPath = findSDCardPath();
+    Log.d(TAG, "SD Card Path: " + sdCardPath.getPath());
     if (sdCardPath != null) {
 
       FileStorageStats extFileStorageStats = getFileStorageStats(sdCardPath, EXTERNAL);
@@ -42,15 +45,16 @@ public class FileStorageExtension extends DashClockExtension {
       if (extFileStorageStats.getTotalBytes() != intFileStorageStats.getTotalBytes()) {
         totalBytes += extFileStorageStats.getTotalBytes();
         freeBytes += extFileStorageStats.getFreeBytes();
-        Log.d("FileStorageExtension", format("External Storage [total: %d, free: %d]",
-            extFileStorageStats.getTotalBytes(), extFileStorageStats.getFreeBytes()));
+        Log.d(TAG, format("External Storage [total: %d, free: %d, free %%: %d]",
+            extFileStorageStats.getTotalBytes(), extFileStorageStats.getFreeBytes(),
+            extFileStorageStats.calculatePercentageFree()));
 
         bodyExternal = "\n" + extFileStorageStats.toString(this);
       }
     }
 
     int totalPercentageFree = (int) Math.ceil(((float) freeBytes / totalBytes) * 100);
-    Log.d("FileStorageExtension", format("Total Free: %d%%", totalPercentageFree));
+    Log.d(TAG, format("Total Free: %d%%", totalPercentageFree));
 
     String bodyInternal = intFileStorageStats.toString(this);
     String title = format("%s%% free space", totalPercentageFree);
@@ -75,7 +79,7 @@ public class FileStorageExtension extends DashClockExtension {
         .withTotalBytes(blockSize * stat.getBlockCount());
   }
 
-  private File getSDCardPath() {
+  private File findSDCardPath() {
 
     for (String sdPath : sdPaths) {
       File path = new File(sdPath);
@@ -84,6 +88,6 @@ public class FileStorageExtension extends DashClockExtension {
       }
     }
 
-    return null;
+    return null; // No sdcard?
   }
 }
