@@ -1,4 +1,4 @@
-package com.pixelus.dashclock.ext;
+package com.pixelus.dashclock.ext.filestorage;
 
 public enum FileStorageStatsType {
 

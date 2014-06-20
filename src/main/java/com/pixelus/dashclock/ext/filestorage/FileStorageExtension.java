@@ -1,4 +1,4 @@
-package com.pixelus.dashclock.ext;
+package com.pixelus.dashclock.ext.filestorage;
 
 import android.os.Environment;
 import android.os.StatFs;
@@ -8,8 +8,6 @@ import com.google.android.apps.dashclock.api.ExtensionData;
 
 import java.io.File;
 
-import static com.pixelus.dashclock.ext.FileStorageStatsType.EXTERNAL;
-import static com.pixelus.dashclock.ext.FileStorageStatsType.INTERNAL;
 import static java.lang.String.format;
 
 public class FileStorageExtension extends DashClockExtension {
@@ -26,7 +24,7 @@ public class FileStorageExtension extends DashClockExtension {
   @Override
   protected void onUpdateData(int i) {
 
-    FileStorageStats intFileStorageStats = getFileStorageStats(Environment.getExternalStorageDirectory(), INTERNAL);
+    FileStorageStats intFileStorageStats = getFileStorageStats(Environment.getExternalStorageDirectory(), FileStorageStatsType.INTERNAL);
     long totalBytes = intFileStorageStats.getTotalBytes();
     long freeBytes = intFileStorageStats.getFreeBytes();
 
@@ -39,7 +37,7 @@ public class FileStorageExtension extends DashClockExtension {
     Log.d(TAG, "SD Card Path: " + sdCardPath.getPath());
     if (sdCardPath != null) {
 
-      FileStorageStats extFileStorageStats = getFileStorageStats(sdCardPath, EXTERNAL);
+      FileStorageStats extFileStorageStats = getFileStorageStats(sdCardPath, FileStorageStatsType.EXTERNAL);
       // Make our best attempt to ensure that the path used for the internal storage isn't the same that
       // we've identified for our external storage.
       if (extFileStorageStats.getTotalBytes() != intFileStorageStats.getTotalBytes()) {
@@ -58,7 +56,7 @@ public class FileStorageExtension extends DashClockExtension {
     Log.d(TAG, format("Total Free: %d%%", totalPercentageFree));
 
     String bodyInternal = intFileStorageStats.toString(this);
-    String title = format("%s%% total free space", totalPercentageFree);
+    String title = format("%s%% Total free space", totalPercentageFree);
 
     publishUpdate(new ExtensionData()
             .visible(true)

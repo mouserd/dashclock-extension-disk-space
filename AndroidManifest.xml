@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.pixelus.dashclock.ext"
+  package="com.pixelus.dashclock.ext.filestorage"
   android:versionCode="1"
   android:versionName="1.0-SNAPSHOT">
 

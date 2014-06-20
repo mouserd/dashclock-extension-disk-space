@@ -1,4 +1,4 @@
-package com.pixelus.dashclock.ext;
+package com.pixelus.dashclock.ext.filestorage;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -22,7 +22,7 @@ public class FileStorageExtensionActivity extends Activity {
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
     // Inflate the menu; this adds items to the action bar if it is present.
-    getMenuInflater().inflate(com.pixelus.dashclock.ext.R.menu.main, menu);
+    getMenuInflater().inflate(R.menu.main, menu);
     return true;
   }
 
