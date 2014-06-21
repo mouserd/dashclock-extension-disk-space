@@ -82,7 +82,7 @@ public class FileStorageExtension extends DashClockExtension {
 
     for (String sdPath : sdPaths) {
       File path = new File(sdPath);
-      if (path.exists()) {
+      if (path.exists() && path.getTotalSpace() > 0) {
         return path;
       }
     }
