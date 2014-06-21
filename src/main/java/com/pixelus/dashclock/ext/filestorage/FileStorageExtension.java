@@ -56,7 +56,7 @@ public class FileStorageExtension extends DashClockExtension {
     Log.d(TAG, format("Total Free: %d%%", totalPercentageFree));
 
     String bodyInternal = intFileStorageStats.toString(this);
-    String title = format("%s%% Total free space", totalPercentageFree);
+    String title = format(getString(R.string.extension_expanded_title), totalPercentageFree);
 
     publishUpdate(new ExtensionData()
             .visible(true)

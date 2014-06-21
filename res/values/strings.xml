@@ -4,4 +4,6 @@
   <string name="extension_title">File Storage</string>
   <string name="extension_description">An extension for DashClock to display local and external file storage statistics</string>
   <string name="action_settings">Settings</string>
+  <string name="extension_expanded_title" formatted="false">%s%% Total free space</string>
+  <string name="extension_expanded_body_storage_line" formatted="false">%s %s%% free: %s of %s</string>
 </resources>
