@@ -1,26 +1,26 @@
-package com.pixelus.dashclock.ext.filestorage;
+package com.pixelus.dashclock.ext.mystorage;
 
 import android.content.Context;
 
 import static android.text.format.Formatter.formatShortFileSize;
 
-public class FileStorageStats {
+public class MyStorageStats {
 
   private long totalBytes;
   private long freeBytes;
-  private FileStorageStatsType fileStorageStatsType;
+  private MyStorageStatsType myStorageStatsType;
 
-  public FileStorageStats(FileStorageStatsType fileStorageStatsType) {
+  public MyStorageStats(MyStorageStatsType myStorageStatsType) {
 
-    this.fileStorageStatsType = fileStorageStatsType;
+    this.myStorageStatsType = myStorageStatsType;
   }
 
-  public FileStorageStatsType getFileStorageStatsType() {
-    return fileStorageStatsType;
+  public MyStorageStatsType getMyStorageStatsType() {
+    return myStorageStatsType;
   }
 
-  public void setFileStorageStatsType(FileStorageStatsType fileStorageStatsType) {
-    this.fileStorageStatsType = fileStorageStatsType;
+  public void setMyStorageStatsType(MyStorageStatsType myStorageStatsType) {
+    this.myStorageStatsType = myStorageStatsType;
   }
 
   public int calculatePercentageFree() {
@@ -48,12 +48,12 @@ public class FileStorageStats {
     this.freeBytes = freeBytes;
   }
 
-  public FileStorageStats withFreeBytes(long freeBytes) {
+  public MyStorageStats withFreeBytes(long freeBytes) {
     this.freeBytes = freeBytes;
     return this;
   }
 
-  public FileStorageStats withTotalBytes(long totalBytes) {
+  public MyStorageStats withTotalBytes(long totalBytes) {
     this.totalBytes = totalBytes;
     return this;
   }
@@ -61,7 +61,7 @@ public class FileStorageStats {
   public String toString(Context context) {
 
     String expandedBodyLine = context.getString(R.string.extension_expanded_body_storage_line);
-    return String.format(expandedBodyLine, fileStorageStatsType.getDisplayName(),
+    return String.format(expandedBodyLine, myStorageStatsType.getDisplayName(),
         calculatePercentageFree(),
         formatShortFileSize(context, getFreeBytes()),
         formatShortFileSize(context, getTotalBytes()));

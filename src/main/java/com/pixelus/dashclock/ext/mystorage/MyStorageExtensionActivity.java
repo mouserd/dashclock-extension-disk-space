@@ -1,10 +1,10 @@
-package com.pixelus.dashclock.ext.filestorage;
+package com.pixelus.dashclock.ext.mystorage;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 
-public class FileStorageExtensionActivity extends Activity {
+public class MyStorageExtensionActivity extends Activity {
 
   /**
    * Called when the activity is first created.

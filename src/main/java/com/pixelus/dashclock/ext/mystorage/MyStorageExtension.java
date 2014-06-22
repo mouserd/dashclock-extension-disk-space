@@ -1,4 +1,4 @@
-package com.pixelus.dashclock.ext.filestorage;
+package com.pixelus.dashclock.ext.mystorage;
 
 import android.os.Environment;
 import android.os.StatFs;
@@ -10,9 +10,9 @@ import java.io.File;
 
 import static java.lang.String.format;
 
-public class FileStorageExtension extends DashClockExtension {
+public class MyStorageExtension extends DashClockExtension {
 
-  public static final String TAG = FileStorageExtension.class.getName();
+  public static final String TAG = MyStorageExtension.class.getName();
 
   private String[] sdPaths = {
       "/storage/extSdCard/",
@@ -24,38 +24,38 @@ public class FileStorageExtension extends DashClockExtension {
   @Override
   protected void onUpdateData(int i) {
 
-    FileStorageStats intFileStorageStats = getFileStorageStats(Environment.getExternalStorageDirectory(), FileStorageStatsType.INTERNAL);
-    long totalBytes = intFileStorageStats.getTotalBytes();
-    long freeBytes = intFileStorageStats.getFreeBytes();
+    MyStorageStats intMyStorageStats = getMyStorageStats(Environment.getExternalStorageDirectory(), MyStorageStatsType.INTERNAL);
+    long totalBytes = intMyStorageStats.getTotalBytes();
+    long freeBytes = intMyStorageStats.getFreeBytes();
 
     Log.d(TAG, format("Internal Storage [total: %d, free: %d, free %%: %d]",
-        intFileStorageStats.getTotalBytes(), intFileStorageStats.getFreeBytes(),
-        intFileStorageStats.calculatePercentageFree()));
+        intMyStorageStats.getTotalBytes(), intMyStorageStats.getFreeBytes(),
+        intMyStorageStats.calculatePercentageFree()));
 
     String bodyExternal = "";
     File sdCardPath = findSDCardPath();
     Log.d(TAG, "SD Card Path: " + sdCardPath.getPath());
     if (sdCardPath != null) {
 
-      FileStorageStats extFileStorageStats = getFileStorageStats(sdCardPath, FileStorageStatsType.EXTERNAL);
+      MyStorageStats extMyStorageStats = getMyStorageStats(sdCardPath, MyStorageStatsType.EXTERNAL);
       // Make our best attempt to ensure that the path used for the internal storage isn't the same that
       // we've identified for our external storage.
-      if (extFileStorageStats.getTotalBytes() != intFileStorageStats.getTotalBytes()) {
-        totalBytes += extFileStorageStats.getTotalBytes();
-        freeBytes += extFileStorageStats.getFreeBytes();
+      if (extMyStorageStats.getTotalBytes() != intMyStorageStats.getTotalBytes()) {
+        totalBytes += extMyStorageStats.getTotalBytes();
+        freeBytes += extMyStorageStats.getFreeBytes();
 
         Log.d(TAG, format("External Storage [total: %d, free: %d, free %%: %d]",
-            extFileStorageStats.getTotalBytes(), extFileStorageStats.getFreeBytes(),
-            extFileStorageStats.calculatePercentageFree()));
+            extMyStorageStats.getTotalBytes(), extMyStorageStats.getFreeBytes(),
+            extMyStorageStats.calculatePercentageFree()));
 
-        bodyExternal = "\n" + extFileStorageStats.toString(this);
+        bodyExternal = "\n" + extMyStorageStats.toString(this);
       }
     }
 
     int totalPercentageFree = (int) Math.ceil(((float) freeBytes / totalBytes) * 100);
     Log.d(TAG, format("Total Free: %d%%", totalPercentageFree));
 
-    String bodyInternal = intFileStorageStats.toString(this);
+    String bodyInternal = intMyStorageStats.toString(this);
     String title = format(getString(R.string.extension_expanded_title), totalPercentageFree);
 
     publishUpdate(new ExtensionData()
@@ -68,12 +68,12 @@ public class FileStorageExtension extends DashClockExtension {
     );
   }
 
-  private FileStorageStats getFileStorageStats(File filePath, FileStorageStatsType fileStorageStatsType) {
+  private MyStorageStats getMyStorageStats(File filePath, MyStorageStatsType myStorageStatsType) {
 
     final StatFs stat = new StatFs(filePath.getPath());
     long blockSize = stat.getBlockSize();
 
-    return new FileStorageStats(fileStorageStatsType)
+    return new MyStorageStats(myStorageStatsType)
         .withFreeBytes(blockSize * stat.getAvailableBlocks())
         .withTotalBytes(blockSize * stat.getBlockCount());
   }

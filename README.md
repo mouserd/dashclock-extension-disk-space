@@ -1,2 +1,2 @@
-dashclock-extension-filestorage
+dashclock-extension-mystorage
 ===============================
