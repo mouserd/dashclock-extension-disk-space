@@ -34,8 +34,8 @@ public class MyStorageExtension extends DashClockExtension {
 
     String bodyExternal = "";
     File sdCardPath = findSDCardPath();
-    Log.d(TAG, "SD Card Path: " + sdCardPath.getPath());
     if (sdCardPath != null) {
+      Log.d(TAG, "SD Card Path: " + sdCardPath.getPath());
 
       MyStorageStats extMyStorageStats = getMyStorageStats(sdCardPath, MyStorageStatsType.EXTERNAL);
       // Make our best attempt to ensure that the path used for the internal storage isn't the same that
