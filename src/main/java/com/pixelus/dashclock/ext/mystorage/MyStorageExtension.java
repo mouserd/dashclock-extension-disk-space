@@ -7,11 +7,15 @@ import com.google.android.apps.dashclock.api.ExtensionData;
 
 import java.io.File;
 
+import static com.pixelus.dashclock.ext.mystorage.MyStorageStatsType.EXTERNAL;
+import static com.pixelus.dashclock.ext.mystorage.MyStorageStatsType.INTERNAL;
 import static java.lang.String.format;
 
 public class MyStorageExtension extends DashClockExtension {
 
   public static final String TAG = MyStorageExtension.class.getName();
+
+  private File detectedSDCardPath = null;
 
   private String[] sdPaths = {
       "/data/sdext",
@@ -40,7 +44,7 @@ public class MyStorageExtension extends DashClockExtension {
   @Override
   protected void onUpdateData(int i) {
 
-    MyStorageStats intMyStorageStats = getMyStorageStats(getFilesDir(), MyStorageStatsType.INTERNAL);
+    MyStorageStats intMyStorageStats = getMyStorageStats(getFilesDir(), INTERNAL);
     long totalBytes = intMyStorageStats.getTotalBytes();
     long freeBytes = intMyStorageStats.getFreeBytes();
 
@@ -53,7 +57,7 @@ public class MyStorageExtension extends DashClockExtension {
     if (sdCardPath != null) {
       Log.d(TAG, "SD Card Path: " + sdCardPath.getPath());
 
-      MyStorageStats extMyStorageStats = getMyStorageStats(sdCardPath, MyStorageStatsType.EXTERNAL);
+      MyStorageStats extMyStorageStats = getMyStorageStats(sdCardPath, EXTERNAL);
       // Make our best attempt to ensure that the path used for the internal storage isn't the same that
       // we've identified for our external storage.
       if (extMyStorageStats.getTotalBytes() != intMyStorageStats.getTotalBytes()) {
@@ -96,10 +100,15 @@ public class MyStorageExtension extends DashClockExtension {
 
   private File findSDCardPath() {
 
+    if (detectedSDCardPath != null) {
+      return detectedSDCardPath;
+    }
+
     for (String sdPath : sdPaths) {
       File path = new File(sdPath);
 //      Log.d(TAG, "Path: "+ sdPath +" exists? " + path.exists());
       if (path.exists() && path.getTotalSpace() > 0) {
+        detectedSDCardPath = path;
         return path;
       }
     }
