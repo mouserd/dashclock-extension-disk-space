@@ -1,6 +1,5 @@
 package com.pixelus.dashclock.ext.mystorage;
 
-import android.os.Environment;
 import android.os.StatFs;
 import android.util.Log;
 import com.google.android.apps.dashclock.api.DashClockExtension;
@@ -15,16 +14,33 @@ public class MyStorageExtension extends DashClockExtension {
   public static final String TAG = MyStorageExtension.class.getName();
 
   private String[] sdPaths = {
+      "/data/sdext",
+      "/data/sdext2",
+      "/data/sdext3",
+      "/data/sdext4",
       "/storage/extSdCard/",
+      "/storage/extsdcard",
+      "/storage/ext_sd",
+      "/storage/sdcard0/external_sdcard",
+      "/mnt/emmc",
+      "/mnt/external_sd/",
+      "/mnt/extsdcard",
+      "/mnt/media_rw/sdcard1",
+      "/mnt/sdcard/ext_sd",
+      "/mnt/sdcard/external_sd",
+      "/removable/microsd",
+      "/storage/external_SD",
       "/storage/sdcard1/",
       "/storage/usbcard1/",
+      "/storage/removable/sdcard1",
+      "/mnt/sdcard/",
       "/storage/sdcard0/"
   };
 
   @Override
   protected void onUpdateData(int i) {
 
-    MyStorageStats intMyStorageStats = getMyStorageStats(Environment.getExternalStorageDirectory(), MyStorageStatsType.INTERNAL);
+    MyStorageStats intMyStorageStats = getMyStorageStats(getFilesDir(), MyStorageStatsType.INTERNAL);
     long totalBytes = intMyStorageStats.getTotalBytes();
     long freeBytes = intMyStorageStats.getFreeBytes();
 
@@ -82,6 +98,7 @@ public class MyStorageExtension extends DashClockExtension {
 
     for (String sdPath : sdPaths) {
       File path = new File(sdPath);
+//      Log.d(TAG, "Path: "+ sdPath +" exists? " + path.exists());
       if (path.exists() && path.getTotalSpace() > 0) {
         return path;
       }
