@@ -7,6 +7,7 @@ import com.google.android.apps.dashclock.api.ExtensionData;
 
 import java.io.File;
 
+import static android.text.format.Formatter.formatShortFileSize;
 import static com.pixelus.dashclock.ext.mystorage.MyStorageStatsType.EXTERNAL;
 import static com.pixelus.dashclock.ext.mystorage.MyStorageStatsType.INTERNAL;
 import static java.lang.String.format;
@@ -78,10 +79,13 @@ public class MyStorageExtension extends DashClockExtension {
     String bodyInternal = intMyStorageStats.toString(this);
     String title = format(getString(R.string.extension_expanded_title), totalPercentageFree);
 
+    String status = format(getString(R.string.extension_status), totalPercentageFree,
+        formatShortFileSize(this, freeBytes));
+
     publishUpdate(new ExtensionData()
             .visible(true)
             .icon(R.drawable.ic_launcher)
-            .status(getString(R.string.extension_title))
+            .status(status)
             .expandedTitle(title)
             .expandedBody(bodyInternal + bodyExternal)
         //.clickIntent(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"))));
