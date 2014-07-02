@@ -1,6 +1,4 @@
-<img src="https://github.com/mouserd/dashclock-extension-mystorage/tree/master/res/drawable-ldpi" style="float:right">
-##  DashClock MyStorage Extension
-
+## <img src="https://raw.githubusercontent.com/mouserd/dashclock-extension-mystorage/master/res/drawable-ldpi/ic_launcher.png" style="float: right"> DashClock MyStorage Extension
 
 [DashClock MyStorage Extension](https://play.google.com/store/apps/details?id=com.pixelus.dashclock.ext.mystorage) 
 is an extension for the 
