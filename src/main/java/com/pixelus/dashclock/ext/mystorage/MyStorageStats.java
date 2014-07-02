@@ -60,8 +60,8 @@ public class MyStorageStats {
 
   public String toString(Context context) {
 
-    String expandedBodyLine = context.getString(R.string.extension_expanded_body_storage_line);
-    return String.format(expandedBodyLine, myStorageStatsType.getDisplayName(),
+    return context.getString(R.string.extension_expanded_body_storage_line,
+        myStorageStatsType.getDisplayName(),
         calculatePercentageFree(),
         formatShortFileSize(context, getFreeBytes()),
         formatShortFileSize(context, getTotalBytes()));

@@ -53,6 +53,7 @@ public class MyStorageExtension extends DashClockExtension {
         intMyStorageStats.getTotalBytes(), intMyStorageStats.getFreeBytes(),
         intMyStorageStats.calculatePercentageFree()));
 
+    String bodyInternal = intMyStorageStats.toString(this);
     String bodyExternal = "";
     File sdCardPath = findSDCardPath();
     if (sdCardPath != null) {
@@ -76,11 +77,8 @@ public class MyStorageExtension extends DashClockExtension {
     int totalPercentageFree = (int) Math.ceil(((float) freeBytes / totalBytes) * 100);
     Log.d(TAG, format("Total Free: %d%%", totalPercentageFree));
 
-    String bodyInternal = intMyStorageStats.toString(this);
-    String title = format(getString(R.string.extension_expanded_title), totalPercentageFree);
-
-    String status = format(getString(R.string.extension_status), totalPercentageFree,
-        formatShortFileSize(this, freeBytes));
+    String title = getString(R.string.extension_expanded_title, totalPercentageFree);
+    String status = getString(R.string.extension_status, totalPercentageFree, formatShortFileSize(this, freeBytes));
 
     publishUpdate(new ExtensionData()
             .visible(true)
