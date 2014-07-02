@@ -23,14 +23,14 @@ pre-requisites and steps.
 
 ### Building a development apk:
 
-To build a development version, simply run:
+To build a development apk, use the maven goal:
 ```
 mvn clean install
 ```
 
 ### Deploying an apk to your device/emulator:
 
-To deploy an apk to your connected device or emulator, simply run:
+To deploy an apk to your connected device or emulator, use the maven goal:
 ```
 mvn android:deploy
 ```
@@ -43,12 +43,12 @@ the Google Playstore.  As such, the release build process will ensure that the c
 `target/mydevice-signed-aligned.apk` is then ready for upload into the playstore.  To initiate a new release, simply:
 
 1. Bump maven version:  
-   Update pom.xml to increment the applications version  
+   Update `pom.xml` to increment the applications version  
    
 2. Bump the android version:  
-   Update AndroidManifest.xml so that the application versionName and versionCode are incremented appropriately.  
+   Update `AndroidManifest.xml` so that the application `versionName` and `versionCode` are incremented appropriately.  
 
-3. Build with a maven release:  
+3. Build a *release* apk using maven:  
    ```
    mvn clean install -P release
    ```
