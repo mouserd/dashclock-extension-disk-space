@@ -17,13 +17,13 @@
 
     <activity
       android:name=".MyStorageExtensionActivity"
-      android:label="@string/extension_title"
+      android:label="@string/extension_label"
       android:exported="true" />
 
     <service
       android:name=".MyStorageExtension"
       android:icon="@drawable/ic_launcher"
-      android:label="@string/extension_title"
+      android:label="@string/extension_label"
       android:permission="com.google.android.apps.dashclock.permission.READ_EXTENSION_DATA">
       <intent-filter>
         <action android:name="com.google.android.apps.dashclock.Extension" />
@@ -40,9 +40,9 @@
         android:value="@string/extension_description" />
 
       <!-- A settings activity is optional - this extension doesn't have any settings -->
-      <!--<meta-data-->
-        <!--android:name="settingsActivity"-->
-        <!--android:value=".MyStorageExtensionActivity" />-->
+      <meta-data
+        android:name="settingsActivity"
+        android:value=".MyStorageExtensionActivity" />
     </service>
 
   </application>
