@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">DashClock MyStorage Erweiterung</string>
+  <string name="extension_label">MyStorage</string>
+  <string name="extension_description">Eine Erweiterung für DashClock zu lokalen und externen Dateispeicher-Statistiken anzuzeigen</string>
+  <string name="action_settings">Einstellungen</string>
+  <string name="extension_status" formatted="false">%s%% (%s)\nGesamtfreiraum</string>
+  <string name="extension_expanded_title" formatted="false">%s%% Gesamtfreiraum</string>
+  <string name="extension_expanded_body_storage_line" formatted="false">%s %s%% frei: %s von %s</string>
+</resources>
