@@ -1,4 +1,4 @@
-## <img src="https://raw.githubusercontent.com/mouserd/dashclock-extension-mystorage/master/res/drawable-ldpi/ic_launcher.png"> DashClock MyStorage Extension
+## <img src="res/drawable-ldpi/ic_launcher.png"> DashClock MyStorage Extension
 
 [DashClock MyStorage Extension](https://play.google.com/store/apps/details?id=com.pixelus.dashclock.ext.mystorage) 
 is an extension for the 
@@ -16,6 +16,9 @@ Specifically, it provides:
   * Free space %
   * Free physical space
   * Total physical space
+  
+<img src="playstore/screenshots/thumbs/s5-device-1.png" 
+  align="center">&nbsp;&nbsp;<img src="playstore/screenshots/thumbs/s5-device-2.png" align="center">
 
 ## Technical Details
 
@@ -40,7 +43,7 @@ mvn android:deploy
 ### Building a RELEASE apk:
 
 When building a release version of the application, the generated artifacts will be suitable for uploading directly into 
-the Google Playstore.  As such, the release build process will ensure that the code is shrinked, optimized and obfuscated
+the Google Playstore.  As such, the release build process will ensure that the code is shrunk, optimized and obfuscated
 (using proguard), signed (certificate not included with this repo), and zip-aligned.  The resulting 
 `target/mydevice-signed-aligned.apk` is then ready for upload into the playstore.  To initiate a new release, simply:
 
