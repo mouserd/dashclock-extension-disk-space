@@ -3,6 +3,7 @@ package com.pixelus.dashclock.ext.mystorage;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
+import com.crashlytics.android.Crashlytics;
 
 public class MyStorageExtensionActivity extends Activity {
 
@@ -17,6 +18,8 @@ public class MyStorageExtensionActivity extends Activity {
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+
+    Crashlytics.start(this);
   }
 
   @Override

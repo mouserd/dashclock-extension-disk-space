@@ -1,50 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.pixelus.dashclock.ext.mystorage"
-  android:versionCode="7"
-  android:versionName="1.4.2">
+          package="com.pixelus.dashclock.ext.mystorage"
+          android:versionCode="7"
+          android:versionName="1.4.2">
 
   <uses-sdk
-    android:minSdkVersion="9"
-    android:targetSdkVersion="19" />
+      android:minSdkVersion="9"
+      android:targetSdkVersion="19"/>
 
   <application
-    android:allowBackup="true"
-    android:icon="@drawable/ic_launcher"
-    android:label="@string/app_name"
-    android:theme="@style/AppTheme"
-    android:debuggable="true">
+      android:allowBackup="true"
+      android:icon="@drawable/ic_launcher"
+      android:label="@string/app_name"
+      android:theme="@style/AppTheme"
+      android:debuggable="true">
 
     <activity
-      android:name=".MyStorageExtensionActivity"
-      android:label="@string/extension_label"
-      android:exported="true" />
+        android:name=".MyStorageExtensionActivity"
+        android:label="@string/extension_label"
+        android:exported="true"/>
 
     <service
-      android:name=".MyStorageExtension"
-      android:icon="@drawable/ic_launcher"
-      android:label="@string/extension_label"
-      android:permission="com.google.android.apps.dashclock.permission.READ_EXTENSION_DATA">
+        android:name=".MyStorageExtension"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/extension_label"
+        android:permission="com.google.android.apps.dashclock.permission.READ_EXTENSION_DATA">
       <intent-filter>
-        <action android:name="com.google.android.apps.dashclock.Extension" />
+        <action android:name="com.google.android.apps.dashclock.Extension"/>
       </intent-filter>
 
       <meta-data
-        android:name="protocolVersion"
-        android:value="2" />
+          android:name="protocolVersion"
+          android:value="2"/>
       <meta-data
-        android:name="worldReadable"
-        android:value="true" />
+          android:name="worldReadable"
+          android:value="true"/>
       <meta-data
-        android:name="description"
-        android:value="@string/extension_description" />
+          android:name="description"
+          android:value="@string/extension_description"/>
 
       <!-- A settings activity is optional - this extension doesn't have any settings -->
       <!--<meta-data-->
-        <!--android:name="settingsActivity"-->
-        <!--android:value=".MyStorageExtensionActivity" />-->
+      <!--android:name="settingsActivity"-->
+      <!--android:value=".MyStorageExtensionActivity" />-->
     </service>
 
+    <meta-data android:name="com.crashlytics.ApiKey" android:value="e40d13de9e45727c7dc411977f11d4913a520bf1"/>
   </application>
 
+  <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>

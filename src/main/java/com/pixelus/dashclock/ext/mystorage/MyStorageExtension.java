@@ -2,6 +2,7 @@ package com.pixelus.dashclock.ext.mystorage;
 
 import android.os.StatFs;
 import android.util.Log;
+import com.crashlytics.android.Crashlytics;
 import com.google.android.apps.dashclock.api.DashClockExtension;
 import com.google.android.apps.dashclock.api.ExtensionData;
 
@@ -17,6 +18,7 @@ public class MyStorageExtension extends DashClockExtension {
   public static final String TAG = MyStorageExtension.class.getName();
 
   private File detectedSDCardPath = null;
+  private boolean crashlyticsStarted = false;
 
   private String[] sdPaths = {
       "/data/sdext",
@@ -44,6 +46,11 @@ public class MyStorageExtension extends DashClockExtension {
 
   @Override
   protected void onUpdateData(int i) {
+
+    if (!crashlyticsStarted) {
+      Crashlytics.start(this);
+      crashlyticsStarted = true;
+    }
 
     MyStorageStats intMyStorageStats = getMyStorageStats(getFilesDir(), INTERNAL);
     long totalBytes = intMyStorageStats.getTotalBytes();
