@@ -186,12 +186,15 @@
     <profile>
       <id>production</id>
       <properties>
-        <debuggable>true</debuggable>
+        <debuggable>false</debuggable>
         <deployment.stage>In Production</deployment.stage>
       </properties>
     </profile>
     <profile>
       <id>release</id>
+      <properties>
+        <debuggable>false</debuggable>
+      </properties>
       <!-- via this activation the profile is automatically used when the release
         is done with the maven release plugin -->
       <activation>
