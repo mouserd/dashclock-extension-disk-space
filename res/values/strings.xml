@@ -2,7 +2,7 @@
 <resources>
   <string name="app_name">DashClock MyStorage Extension</string>
   <string name="extension_label">MyStorage</string>
-  <string name="extension_description">Display local and external file storage statistics</string>
+  <string name="extension_description">Displays local and external (ssd) file storage statistics</string>
   <string name="action_settings">Settings</string>
   <string name="extension_status" formatted="false">%s%% (%s)\nTotal free space</string>
   <string name="extension_expanded_title" formatted="false">%s%% Total free space</string>
