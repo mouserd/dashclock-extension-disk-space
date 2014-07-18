@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import com.crashlytics.android.Crashlytics;
 
-public class MyStorageExtensionActivity extends Activity {
+public class DiskSpaceExtensionActivity extends Activity {
 
   /**
    * Called when the activity is first created.

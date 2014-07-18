@@ -1,10 +1,10 @@
-## <img src="res/drawable-ldpi/ic_launcher.png"> DashClock MyStorage Extension
+## <img src="res/drawable-ldpi/ic_launcher.png"> DashClock Disk Space Extension
 
-[DashClock MyStorage Extension](https://play.google.com/store/apps/details?id=com.pixelus.dashclock.ext.mystorage) 
+[DashClock DiskSpace Extension](https://play.google.com/store/apps/details?id=com.pixelus.dashclock.ext.mystorage) 
 is an extension for the 
 [DashClock Widget](https://play.google.com/store/apps/details?id=net.nurik.roman.dashclock) from Roman Nurik.
 
-This extension shows both internal (device) and external (sdcard) storage in the widget.
+This extension shows both internal (device) and external (sdcard) disk space in the widget.
 Specifically, it provides:
 
 + Total percentage of free space across internal (device) and external (sdcard) storage

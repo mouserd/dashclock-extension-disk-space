@@ -4,23 +4,23 @@ import android.content.Context;
 
 import static android.text.format.Formatter.formatShortFileSize;
 
-public class MyStorageStats {
+public class DiskSpaceStats {
 
   private long totalBytes;
   private long freeBytes;
-  private MyStorageStatsType myStorageStatsType;
+  private DiskSpaceStatsType diskSpaceStatsType;
 
-  public MyStorageStats(MyStorageStatsType myStorageStatsType) {
+  public DiskSpaceStats(DiskSpaceStatsType diskSpaceStatsType) {
 
-    this.myStorageStatsType = myStorageStatsType;
+    this.diskSpaceStatsType = diskSpaceStatsType;
   }
 
-  public MyStorageStatsType getMyStorageStatsType() {
-    return myStorageStatsType;
+  public DiskSpaceStatsType getDiskSpaceStatsType() {
+    return diskSpaceStatsType;
   }
 
-  public void setMyStorageStatsType(MyStorageStatsType myStorageStatsType) {
-    this.myStorageStatsType = myStorageStatsType;
+  public void setDiskSpaceStatsType(DiskSpaceStatsType diskSpaceStatsType) {
+    this.diskSpaceStatsType = diskSpaceStatsType;
   }
 
   public int calculatePercentageFree() {
@@ -48,12 +48,12 @@ public class MyStorageStats {
     this.freeBytes = freeBytes;
   }
 
-  public MyStorageStats withFreeBytes(long freeBytes) {
+  public DiskSpaceStats withFreeBytes(long freeBytes) {
     this.freeBytes = freeBytes;
     return this;
   }
 
-  public MyStorageStats withTotalBytes(long totalBytes) {
+  public DiskSpaceStats withTotalBytes(long totalBytes) {
     this.totalBytes = totalBytes;
     return this;
   }
@@ -61,7 +61,7 @@ public class MyStorageStats {
   public String toString(Context context) {
 
     return context.getString(R.string.extension_expanded_body_storage_line,
-        myStorageStatsType.getDisplayName(),
+        diskSpaceStatsType.getDisplayName(),
         calculatePercentageFree(),
         formatShortFileSize(context, getFreeBytes()),
         formatShortFileSize(context, getTotalBytes()));

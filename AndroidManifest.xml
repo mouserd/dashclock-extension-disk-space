@@ -16,12 +16,12 @@
       android:debuggable="${debuggable}">
 
     <activity
-        android:name=".MyStorageExtensionActivity"
+        android:name=".DiskSpaceExtensionActivity"
         android:label="@string/extension_label"
         android:exported="true"/>
 
     <service
-        android:name=".MyStorageExtension"
+        android:name=".DiskSpaceExtension"
         android:icon="@drawable/ic_launcher"
         android:label="@string/extension_label"
         android:permission="com.google.android.apps.dashclock.permission.READ_EXTENSION_DATA">

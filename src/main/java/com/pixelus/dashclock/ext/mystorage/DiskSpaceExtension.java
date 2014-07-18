@@ -9,13 +9,13 @@ import com.google.android.apps.dashclock.api.ExtensionData;
 import java.io.File;
 
 import static android.text.format.Formatter.formatShortFileSize;
-import static com.pixelus.dashclock.ext.mystorage.MyStorageStatsType.EXTERNAL;
-import static com.pixelus.dashclock.ext.mystorage.MyStorageStatsType.INTERNAL;
+import static com.pixelus.dashclock.ext.mystorage.DiskSpaceStatsType.EXTERNAL;
+import static com.pixelus.dashclock.ext.mystorage.DiskSpaceStatsType.INTERNAL;
 import static java.lang.String.format;
 
-public class MyStorageExtension extends DashClockExtension {
+public class DiskSpaceExtension extends DashClockExtension {
 
-  public static final String TAG = MyStorageExtension.class.getName();
+  public static final String TAG = DiskSpaceExtension.class.getName();
 
   private File detectedSDCardPath = null;
   private boolean crashlyticsStarted = false;
@@ -52,32 +52,32 @@ public class MyStorageExtension extends DashClockExtension {
       crashlyticsStarted = true;
     }
 
-    MyStorageStats intMyStorageStats = getMyStorageStats(getFilesDir(), INTERNAL);
-    long totalBytes = intMyStorageStats.getTotalBytes();
-    long freeBytes = intMyStorageStats.getFreeBytes();
+    DiskSpaceStats intDiskSpaceStats = getMyStorageStats(getFilesDir(), INTERNAL);
+    long totalBytes = intDiskSpaceStats.getTotalBytes();
+    long freeBytes = intDiskSpaceStats.getFreeBytes();
 
     Log.d(TAG, format("Internal Storage [total: %d, free: %d, free %%: %d]",
-        intMyStorageStats.getTotalBytes(), intMyStorageStats.getFreeBytes(),
-        intMyStorageStats.calculatePercentageFree()));
+        intDiskSpaceStats.getTotalBytes(), intDiskSpaceStats.getFreeBytes(),
+        intDiskSpaceStats.calculatePercentageFree()));
 
-    String bodyInternal = intMyStorageStats.toString(this);
+    String bodyInternal = intDiskSpaceStats.toString(this);
     String bodyExternal = "";
     File sdCardPath = findSDCardPath();
     if (sdCardPath != null) {
       Log.d(TAG, "SD Card Path: " + sdCardPath.getPath());
 
-      MyStorageStats extMyStorageStats = getMyStorageStats(sdCardPath, EXTERNAL);
+      DiskSpaceStats extDiskSpaceStats = getMyStorageStats(sdCardPath, EXTERNAL);
       // Make our best attempt to ensure that the path used for the internal storage isn't the same that
       // we've identified for our external storage.
-      if (extMyStorageStats.getTotalBytes() != intMyStorageStats.getTotalBytes()) {
-        totalBytes += extMyStorageStats.getTotalBytes();
-        freeBytes += extMyStorageStats.getFreeBytes();
+      if (extDiskSpaceStats.getTotalBytes() != intDiskSpaceStats.getTotalBytes()) {
+        totalBytes += extDiskSpaceStats.getTotalBytes();
+        freeBytes += extDiskSpaceStats.getFreeBytes();
 
         Log.d(TAG, format("External Storage [total: %d, free: %d, free %%: %d]",
-            extMyStorageStats.getTotalBytes(), extMyStorageStats.getFreeBytes(),
-            extMyStorageStats.calculatePercentageFree()));
+            extDiskSpaceStats.getTotalBytes(), extDiskSpaceStats.getFreeBytes(),
+            extDiskSpaceStats.calculatePercentageFree()));
 
-        bodyExternal = "\n" + extMyStorageStats.toString(this);
+        bodyExternal = "\n" + extDiskSpaceStats.toString(this);
       }
     }
 
@@ -97,12 +97,12 @@ public class MyStorageExtension extends DashClockExtension {
     );
   }
 
-  private MyStorageStats getMyStorageStats(File filePath, MyStorageStatsType myStorageStatsType) {
+  private DiskSpaceStats getMyStorageStats(File filePath, DiskSpaceStatsType diskSpaceStatsType) {
 
     final StatFs stat = new StatFs(filePath.getPath());
     long blockSize = stat.getBlockSize();
 
-    return new MyStorageStats(myStorageStatsType)
+    return new DiskSpaceStats(diskSpaceStatsType)
         .withFreeBytes(blockSize * stat.getAvailableBlocks())
         .withTotalBytes(blockSize * stat.getBlockCount());
   }
