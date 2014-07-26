@@ -1,4 +1,5 @@
 language: android
+script: "mvn clean validate install"
 android:
   components:
     - build-tools-19.0.2

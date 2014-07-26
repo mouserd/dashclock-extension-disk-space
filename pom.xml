@@ -18,6 +18,10 @@
 
   <repositories>
     <repository>
+      <id>central</id>
+      <url>http://repo1.maven.org/maven2</url>
+    </repository>
+    <repository>
       <id>crashlytics-repo</id>
       <url>http://download.crashlytics.com/maven</url>
     </repository>
@@ -176,6 +180,7 @@
               <version>1.0.0</version>
               <packaging>jar</packaging>
               <file>${basedir}/lib/android-commons.jar</file>
+              <generatePom>true</generatePom>
             </configuration>
           </execution>
         </executions>
