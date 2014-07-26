@@ -7,4 +7,7 @@
   <string name="extension_status" formatted="false">%s%% (%s)\nTotal free space</string>
   <string name="extension_expanded_title" formatted="false">%s%% Total free space</string>
   <string name="extension_expanded_body_storage_line" formatted="false">%s %s%% free: %s of %s</string>
+
+  <string name="extension_settings_title">Disk Space Settings</string>
+  <string name="pref_click_intent_shortcut_title">Shortcut</string>
 </resources>

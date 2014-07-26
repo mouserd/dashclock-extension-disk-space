@@ -16,7 +16,7 @@
       android:debuggable="${debuggable}">
 
     <activity
-        android:name=".DiskSpaceExtensionActivity"
+        android:name=".DiskSpaceExtensionSettingsActivity"
         android:label="@string/extension_label"
         android:exported="true"/>
 
@@ -39,10 +39,9 @@
           android:name="description"
           android:value="@string/extension_description"/>
 
-      <!-- A settings activity is optional - this extension doesn't have any settings -->
-      <!--<meta-data-->
-      <!--android:name="settingsActivity"-->
-      <!--android:value=".MyStorageExtensionActivity" />-->
+      <meta-data
+          android:name="settingsActivity"
+          android:value=".DiskSpaceExtensionSettingsActivity"/>
     </service>
 
     <meta-data android:name="com.crashlytics.ApiKey" android:value="e40d13de9e45727c7dc411977f11d4913a520bf1"/>

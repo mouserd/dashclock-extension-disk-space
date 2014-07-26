@@ -1,6 +1,10 @@
 package com.pixelus.dashclock.ext.mystorage;
 
+import android.content.ComponentName;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.StatFs;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import com.crashlytics.android.Crashlytics;
 import com.google.android.apps.dashclock.api.DashClockExtension;
@@ -8,6 +12,9 @@ import com.google.android.apps.dashclock.api.ExtensionData;
 
 import java.io.File;
 
+import static android.content.Intent.ACTION_MAIN;
+import static android.content.Intent.CATEGORY_LAUNCHER;
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 import static android.text.format.Formatter.formatShortFileSize;
 import static com.pixelus.dashclock.ext.mystorage.DiskSpaceStatsType.EXTERNAL;
 import static com.pixelus.dashclock.ext.mystorage.DiskSpaceStatsType.INTERNAL;
@@ -16,6 +23,7 @@ import static java.lang.String.format;
 public class DiskSpaceExtension extends DashClockExtension {
 
   public static final String TAG = DiskSpaceExtension.class.getName();
+  public static final String PREF_CLICK_INTENT_APPLICATION = "pref_click_intent_shortcut";
 
   private File detectedSDCardPath = null;
   private boolean crashlyticsStarted = false;
@@ -93,7 +101,7 @@ public class DiskSpaceExtension extends DashClockExtension {
             .status(status)
             .expandedTitle(title)
             .expandedBody(bodyInternal + bodyExternal)
-        //.clickIntent(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"))));
+            .clickIntent(createClickIntent())
     );
   }
 
@@ -115,7 +123,6 @@ public class DiskSpaceExtension extends DashClockExtension {
 
     for (String sdPath : sdPaths) {
       File path = new File(sdPath);
-//      Log.d(TAG, "Path: "+ sdPath +" exists? " + path.exists());
       if (path.exists() && path.getTotalSpace() > 0) {
         detectedSDCardPath = path;
         return path;
@@ -123,5 +130,21 @@ public class DiskSpaceExtension extends DashClockExtension {
     }
 
     return null; // No sdcard?
+  }
+
+  public Intent createClickIntent() {
+
+    final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+    final String intentPackageName = sp.getString(PREF_CLICK_INTENT_APPLICATION, "");
+    if (intentPackageName.isEmpty()) {
+      return null;
+    }
+
+    final Intent intent = new Intent(ACTION_MAIN);
+    intent.addCategory(CATEGORY_LAUNCHER);
+    intent.setComponent(ComponentName.unflattenFromString(intentPackageName));
+    intent.setFlags(FLAG_ACTIVITY_NEW_TASK);
+
+    return intent;
   }
 }

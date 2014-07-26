@@ -1,0 +1,14 @@
+<PreferenceScreen
+    android:title="@string/extension_settings_title"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <PreferenceCategory android:title="General">
+    <com.pixelus.android.widget.InstalledApplicationsListPreference
+      android:key="pref_click_intent_shortcut"
+      android:title="@string/pref_click_intent_shortcut_title"
+      android:entries="@array/pref_entries_choose_apps"
+      android:entryValues="@array/pref_values_choose_apps"
+      android:defaultValue="" />
+  </PreferenceCategory>
+
+</PreferenceScreen>
