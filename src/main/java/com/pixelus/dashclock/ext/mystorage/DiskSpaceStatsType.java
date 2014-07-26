@@ -7,7 +7,7 @@ public enum DiskSpaceStatsType {
 
   private String displayName;
 
-  private DiskSpaceStatsType(String displayName) {
+  private DiskSpaceStatsType(final String displayName) {
     this.displayName = displayName;
   }
 

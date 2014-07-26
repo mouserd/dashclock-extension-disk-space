@@ -22,7 +22,7 @@ import static java.lang.String.format;
 
 public class DiskSpaceExtension extends DashClockExtension {
 
-  public static final String TAG = DiskSpaceExtension.class.getName();
+  public static final String TAG = DiskSpaceExtension.class.getSimpleName();
   public static final String PREF_CLICK_INTENT_APPLICATION = "pref_click_intent_shortcut";
 
   private File detectedSDCardPath = null;
@@ -53,14 +53,15 @@ public class DiskSpaceExtension extends DashClockExtension {
   };
 
   @Override
-  protected void onUpdateData(int i) {
+  public void onCreate() {
+    super.onCreate();
+    Crashlytics.start(this);
+  }
 
-    if (!crashlyticsStarted) {
-      Crashlytics.start(this);
-      crashlyticsStarted = true;
-    }
+  @Override
+  protected void onUpdateData(final int i) {
 
-    DiskSpaceStats intDiskSpaceStats = getMyStorageStats(getFilesDir(), INTERNAL);
+    final DiskSpaceStats intDiskSpaceStats = getMyStorageStats(getFilesDir(), INTERNAL);
     long totalBytes = intDiskSpaceStats.getTotalBytes();
     long freeBytes = intDiskSpaceStats.getFreeBytes();
 
@@ -89,11 +90,11 @@ public class DiskSpaceExtension extends DashClockExtension {
       }
     }
 
-    int totalPercentageFree = (int) Math.ceil(((float) freeBytes / totalBytes) * 100);
+    final int totalPercentageFree = (int) Math.ceil(((float) freeBytes / totalBytes) * 100);
     Log.d(TAG, format("Total Free: %d%%", totalPercentageFree));
 
-    String title = getString(R.string.extension_expanded_title, totalPercentageFree);
-    String status = getString(R.string.extension_status, totalPercentageFree, formatShortFileSize(this, freeBytes));
+    final String title = getString(R.string.extension_expanded_title, totalPercentageFree);
+    final String status = getString(R.string.extension_status, totalPercentageFree, formatShortFileSize(this, freeBytes));
 
     publishUpdate(new ExtensionData()
             .visible(true)
@@ -105,10 +106,10 @@ public class DiskSpaceExtension extends DashClockExtension {
     );
   }
 
-  private DiskSpaceStats getMyStorageStats(File filePath, DiskSpaceStatsType diskSpaceStatsType) {
+  private DiskSpaceStats getMyStorageStats(final File filePath, final DiskSpaceStatsType diskSpaceStatsType) {
 
     final StatFs stat = new StatFs(filePath.getPath());
-    long blockSize = stat.getBlockSize();
+    final long blockSize = stat.getBlockSize();
 
     return new DiskSpaceStats(diskSpaceStatsType)
         .withFreeBytes(blockSize * stat.getAvailableBlocks())
@@ -122,7 +123,7 @@ public class DiskSpaceExtension extends DashClockExtension {
     }
 
     for (String sdPath : sdPaths) {
-      File path = new File(sdPath);
+      final File path = new File(sdPath);
       if (path.exists() && path.getTotalSpace() > 0) {
         detectedSDCardPath = path;
         return path;

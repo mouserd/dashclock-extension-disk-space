@@ -10,7 +10,7 @@ public class DiskSpaceStats {
   private long freeBytes;
   private DiskSpaceStatsType diskSpaceStatsType;
 
-  public DiskSpaceStats(DiskSpaceStatsType diskSpaceStatsType) {
+  public DiskSpaceStats(final DiskSpaceStatsType diskSpaceStatsType) {
 
     this.diskSpaceStatsType = diskSpaceStatsType;
   }
@@ -19,7 +19,7 @@ public class DiskSpaceStats {
     return diskSpaceStatsType;
   }
 
-  public void setDiskSpaceStatsType(DiskSpaceStatsType diskSpaceStatsType) {
+  public void setDiskSpaceStatsType(final DiskSpaceStatsType diskSpaceStatsType) {
     this.diskSpaceStatsType = diskSpaceStatsType;
   }
 
@@ -36,7 +36,7 @@ public class DiskSpaceStats {
     return totalBytes;
   }
 
-  public void setTotalBytes(long totalBytes) {
+  public void setTotalBytes(final long totalBytes) {
     this.totalBytes = totalBytes;
   }
 
@@ -44,21 +44,21 @@ public class DiskSpaceStats {
     return freeBytes;
   }
 
-  public void setFreeBytes(long freeBytes) {
+  public void setFreeBytes(final long freeBytes) {
     this.freeBytes = freeBytes;
   }
 
-  public DiskSpaceStats withFreeBytes(long freeBytes) {
+  public DiskSpaceStats withFreeBytes(final long freeBytes) {
     this.freeBytes = freeBytes;
     return this;
   }
 
-  public DiskSpaceStats withTotalBytes(long totalBytes) {
+  public DiskSpaceStats withTotalBytes(final long totalBytes) {
     this.totalBytes = totalBytes;
     return this;
   }
 
-  public String toString(Context context) {
+  public String toString(final Context context) {
 
     return context.getString(R.string.extension_expanded_body_storage_line,
         diskSpaceStatsType.getDisplayName(),
