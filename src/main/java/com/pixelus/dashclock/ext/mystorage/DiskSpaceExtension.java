@@ -26,7 +26,6 @@ public class DiskSpaceExtension extends DashClockExtension {
   public static final String PREF_CLICK_INTENT_APPLICATION = "pref_click_intent_shortcut";
 
   private File detectedSDCardPath = null;
-  private boolean crashlyticsStarted = false;
 
   private String[] sdPaths = {
       "/data/sdext",
