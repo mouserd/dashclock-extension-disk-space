@@ -9,6 +9,7 @@ import android.util.Log;
 import com.crashlytics.android.Crashlytics;
 import com.google.android.apps.dashclock.api.DashClockExtension;
 import com.google.android.apps.dashclock.api.ExtensionData;
+import io.fabric.sdk.android.Fabric;
 
 import java.io.File;
 
@@ -19,8 +20,6 @@ import static android.text.format.Formatter.formatShortFileSize;
 import static com.pixelus.dashclock.ext.mystorage.DiskSpaceStatsType.EXTERNAL;
 import static com.pixelus.dashclock.ext.mystorage.DiskSpaceStatsType.INTERNAL;
 import static java.lang.String.format;
-import com.crashlytics.android.Crashlytics;
-import io.fabric.sdk.android.Fabric;
 
 public class DiskSpaceExtension extends DashClockExtension {
 
@@ -34,25 +33,29 @@ public class DiskSpaceExtension extends DashClockExtension {
       "/data/sdext2",
       "/data/sdext3",
       "/data/sdext4",
-      "/storage/extSdCard/",
+      "/storage/extSdCard",
       "/storage/extsdcard",
       "/storage/ext_sd",
       "/storage/sdcard0/external_sdcard",
+      "/mnt/media_rw",
       "/mnt/emmc",
       "/mnt/external_sd/",
       "/mnt/extsdcard",
       "/mnt/media_rw/sdcard1",
       "/mnt/sdcard/ext_sd",
       "/mnt/sdcard/external_sd",
+      "/mnt/sdcard/sd",
+      "/mnt/sdcard/_ExternalSD",
       "/removable/microsd",
       "/storage/external_SD",
       "/storage/sdcard1/",
       "/storage/usbcard1/",
       "/storage/removable/sdcard1",
       "/storage/extSdCard/",
-      "/mnt/sdcard/",
-      "/storage/sdcard0/",
-      "/storage/emulated/0"
+      "/storage/sdcard0",
+      "/storage/emulated/0",
+      "/mnt/sdcard",
+      "/sdcard",
   };
 
   @Override
@@ -129,7 +132,7 @@ public class DiskSpaceExtension extends DashClockExtension {
       final File path = new File(sdPath);
       if (path.exists() && path.getTotalSpace() > 0) {
         detectedSDCardPath = path;
-        return path;
+        return detectedSDCardPath;
       }
     }
 
