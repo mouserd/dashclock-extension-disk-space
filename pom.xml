@@ -5,7 +5,7 @@
 
   <groupId>com.pixelus.dashclock.ext</groupId>
   <artifactId>disk-space</artifactId>
-  <version>1.4.8</version>
+  <version>1.4.9</version>
   <packaging>apk</packaging>
   <name>DashClock Disk Space Extension</name>
 
