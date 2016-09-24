@@ -5,12 +5,12 @@
 
   <groupId>com.pixelus.dashclock.ext</groupId>
   <artifactId>disk-space</artifactId>
-  <version>1.4.7</version>
+  <version>1.4.8</version>
   <packaging>apk</packaging>
   <name>DashClock Disk Space Extension</name>
 
   <properties>
-    <project.versionCode>13</project.versionCode>
+    <project.versionCode>14</project.versionCode>
     <platform.version>4.1.1.4</platform.version>
     <android.plugin.version>3.9.0-rc.2</android.plugin.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -22,8 +22,8 @@
       <url>http://repo1.maven.org/maven2</url>
     </repository>
     <repository>
-      <id>crashlytics-repo</id>
-      <url>http://download.crashlytics.com/maven</url>
+      <id>fabric-repo</id>
+      <url>https://maven.fabric.io/public</url>
     </repository>
   </repositories>
 
@@ -58,9 +58,11 @@
       <version>2.0.0</version>
     </dependency>
     <dependency>
-      <groupId>com.crashlytics.android</groupId>
+      <groupId>com.crashlytics.sdk.android</groupId>
       <artifactId>crashlytics</artifactId>
-      <version>[1.1.10,)</version>
+      <version>2.6.1</version>
+      <scope>compile</scope>
+      <type>aar</type>
     </dependency>
   </dependencies>
 
@@ -130,7 +132,7 @@
       <plugin>
         <groupId>com.crashlytics</groupId>
         <artifactId>crashlytics-maven</artifactId>
-        <version>1.9.1</version>
+        <version>1.12.0</version>
         <configuration>
           <androidAssetsPath>${project.basedir}/assets</androidAssetsPath>
           <androidManifestPath>${project.basedir}/AndroidManifest.xml</androidManifestPath>

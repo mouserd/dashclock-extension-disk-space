@@ -3,6 +3,7 @@ package com.pixelus.dashclock.ext.mystorage;
 import android.os.Bundle;
 import com.crashlytics.android.Crashlytics;
 import com.pixelus.android.activity.SharedPreferenceActivity;
+import io.fabric.sdk.android.Fabric;
 
 public class DiskSpaceExtensionSettingsActivity
     extends SharedPreferenceActivity {
@@ -20,6 +21,6 @@ public class DiskSpaceExtensionSettingsActivity
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    Crashlytics.start(this);
+    Fabric.with(this, new Crashlytics());
   }
 }

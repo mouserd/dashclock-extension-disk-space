@@ -19,6 +19,8 @@ import static android.text.format.Formatter.formatShortFileSize;
 import static com.pixelus.dashclock.ext.mystorage.DiskSpaceStatsType.EXTERNAL;
 import static com.pixelus.dashclock.ext.mystorage.DiskSpaceStatsType.INTERNAL;
 import static java.lang.String.format;
+import com.crashlytics.android.Crashlytics;
+import io.fabric.sdk.android.Fabric;
 
 public class DiskSpaceExtension extends DashClockExtension {
 
@@ -47,14 +49,16 @@ public class DiskSpaceExtension extends DashClockExtension {
       "/storage/sdcard1/",
       "/storage/usbcard1/",
       "/storage/removable/sdcard1",
+      "/storage/extSdCard/",
       "/mnt/sdcard/",
-      "/storage/sdcard0/"
+      "/storage/sdcard0/",
+      "/storage/emulated/0"
   };
 
   @Override
   public void onCreate() {
     super.onCreate();
-    Crashlytics.start(this);
+    Fabric.with(this, new Crashlytics());
   }
 
   @Override
