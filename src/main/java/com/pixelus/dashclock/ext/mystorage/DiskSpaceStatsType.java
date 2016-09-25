@@ -5,7 +5,7 @@ public enum DiskSpaceStatsType {
   INTERNAL("Internal"),
   EXTERNAL("External");
 
-  private String displayName;
+  private String displayName = "";
 
   private DiskSpaceStatsType(final String displayName) {
     this.displayName = displayName;

@@ -6,9 +6,9 @@ import static android.text.format.Formatter.formatShortFileSize;
 
 public class DiskSpaceStats {
 
-  private long totalBytes;
-  private long freeBytes;
-  private DiskSpaceStatsType diskSpaceStatsType;
+  private long totalBytes = 0;
+  private long freeBytes = 0;
+  private DiskSpaceStatsType diskSpaceStatsType = null;
 
   public DiskSpaceStats(final DiskSpaceStatsType diskSpaceStatsType) {
 

@@ -21,7 +21,6 @@ import static com.pixelus.dashclock.ext.mystorage.DiskSpaceStatsType.EXTERNAL;
 import static com.pixelus.dashclock.ext.mystorage.DiskSpaceStatsType.INTERNAL;
 import static java.lang.String.format;
 
-@SuppressWarnings("Since15")
 public class DiskSpaceExtension extends DashClockExtension {
 
   public static final String TAG = DiskSpaceExtension.class.getSimpleName();
