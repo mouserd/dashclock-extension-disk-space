@@ -5,7 +5,7 @@
           package="com.pixelus.dashclock.ext.mystorage">
 
   <uses-sdk
-      android:minSdkVersion="9"
+      android:minSdkVersion="16"
       android:targetSdkVersion="19"/>
 
   <application
