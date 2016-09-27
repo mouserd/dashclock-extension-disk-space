@@ -24,6 +24,8 @@ import static java.lang.String.format;
 
 public class DiskSpaceExtension extends DashClockExtension {
 
+  private static final int KITKAT = 19;
+
   public static final String TAG = DiskSpaceExtension.class.getSimpleName();
   public static final String PREF_CLICK_INTENT_APPLICATION = "pref_click_intent_shortcut";
 
@@ -123,7 +125,7 @@ public class DiskSpaceExtension extends DashClockExtension {
   }
 
   private File findSDCardPath() {
-    return Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT ? findSDCardPathLegacy() : findSDCardFromExternalDirs();
+    return Build.VERSION.SDK_INT < KITKAT ? findSDCardPathLegacy() : findSDCardFromExternalDirs();
   }
 
   private File findSDCardFromExternalDirs() {

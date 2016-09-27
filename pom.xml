@@ -11,7 +11,7 @@
 
   <properties>
     <project.versionCode>16</project.versionCode>
-    <platform.version>4.1.1.4</platform.version>
+    <android.platform>4.4.2_r4</android.platform>
     <android.plugin.version>4.1.1</android.plugin.version>
     <android.sdk.version>19</android.sdk.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -48,9 +48,9 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>com.google.android</groupId>
+      <groupId>android</groupId>
       <artifactId>android</artifactId>
-      <version>${platform.version}</version>
+      <version>${android.platform}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
