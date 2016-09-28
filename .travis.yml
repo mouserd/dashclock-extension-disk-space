@@ -7,5 +7,5 @@ before_install:
 before_script: "mvn validate"
 android:
   components:
-    - build-tools-19.0.2
+    - build-tools-23.0.3
     - android-19
