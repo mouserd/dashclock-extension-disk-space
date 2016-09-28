@@ -132,7 +132,7 @@ public class DiskSpaceExtension extends DashClockExtension {
 
     File[] dirs = getApplicationContext().getExternalFilesDirs(null);
     Log.d(TAG, "# of dirs: " + dirs.length);
-    if (dirs.length > 1) {
+    if (dirs.length > 1 && dirs[1].exists()) {
       return dirs[1];
     }
     return null;
