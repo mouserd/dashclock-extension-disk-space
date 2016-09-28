@@ -1,4 +1,9 @@
 language: android
+before_install:
+  # Download required maven android sdk jar (i.e. see the 'provided' google:google.jar in pom.xml)
+  git clone git://github.com/mosabua/maven-android-sdk-deployer.git
+    - cd maven-android-sdk-deployer
+    - mvn install -P4.4
 before_script: "mvn validate"
 android:
   components:
