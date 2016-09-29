@@ -29,7 +29,7 @@ public class DiskSpaceExtension extends DashClockExtension {
   public static final String TAG = DiskSpaceExtension.class.getSimpleName();
   public static final String PREF_CLICK_INTENT_APPLICATION = "pref_click_intent_shortcut";
 
-  private File detectedLegacySDCardPath = null;
+  private File detectedScannedSDCardPath = null;
 
   private String[] sdPaths = {
       "/data/sdext",
@@ -125,35 +125,39 @@ public class DiskSpaceExtension extends DashClockExtension {
   }
 
   private File findSDCardPath() {
-    return Build.VERSION.SDK_INT < KITKAT ? findSDCardPathLegacy() : findSDCardFromExternalDirs();
+    return Build.VERSION.SDK_INT < KITKAT ? scanKnownSDCardPaths() : findSDCardFromExternalDirs();
   }
 
   private File findSDCardFromExternalDirs() {
 
     File[] dirs = getApplicationContext().getExternalFilesDirs(null);
-    Log.d(TAG, "# of dirs: " + dirs.length);
-    if (dirs.length > 1 && dirs[1].exists()) {
-      return dirs[1];
+    Log.d(TAG, "# of external files dirs: " + dirs.length);
+    if (dirs.length > 1) {
+      File path = dirs[1];
+      if (path != null && path.exists()) {
+        Log.d(TAG, "Found external dir: " + path.getName());
+        return path;
+      }
     }
-    return null;
+    return scanKnownSDCardPaths();
   }
 
-  private File findSDCardPathLegacy() {
+  private File scanKnownSDCardPaths() {
 
     // Searching the list of directories could be expensive - so if we have determined it then don't try to find it again.
     // We run a risk that if the user has changed the removable media we may not be able to get it's stats or detect the
-    // new sdcard but given this is for legacy devices it's probably ok.  Eventually we will drop support for legacy devices.
-    if (detectedLegacySDCardPath != null) {
-      return detectedLegacySDCardPath;
+    // new sdcard but given this is for legacy devices it's probably ok.
+    if (detectedScannedSDCardPath != null) {
+      return detectedScannedSDCardPath;
     }
 
     for (String sdPath : sdPaths) {
       final File path = new File(sdPath);
       if (path.exists() && path.getTotalSpace() > 0) {
-        detectedLegacySDCardPath = path;
+        detectedScannedSDCardPath = path;
       }
     }
-    return detectedLegacySDCardPath;
+    return detectedScannedSDCardPath;
   }
 
   public Intent createClickIntent() {
